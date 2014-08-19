@@ -58,12 +58,20 @@ class PojoProperties {
             println ex.message
         }
 
-        //test params:
+        //test default params:
         println pojo.defaultParameters(5)    //500
         println pojo.defaultParameters(5, 10)    //50
 
+        //test optional params
         pojo.optionalParameters(10)
         pojo.optionalParameters(10, 'a')
         pojo.optionalParameters(10, 'a', 'b')
+
+        //call properties dynamically
+        def list =  ['readAndWriteField', 'readOnlyField', 'overrideField']
+        list.each {
+            //access to property using its name
+            println pojo."$it"
+        }
     }
 }
